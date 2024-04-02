@@ -10,12 +10,17 @@ categories.addEventListener('click', (event)=>{
     return;
   }
 
-//액티브 메뉴 재설정
-const active = document.querySelector('.category_selected');
-active.classList.remove('category_selected');
-event.target.classList.add('category_selected');
+  handleActiveSelection(event.target);
+  filterProjects(filter);
+});
 
-//프로젝트 필터링
+function handleActiveSelection(target){
+    const active = document.querySelector('.category_selected');
+    active.classList.remove('category_selected');
+    target.classList.add('category_selected');
+}
+
+function filterProjects(filter){
   projects.forEach(project => {
     if(filter === 'all' || filter === project.dataset.type){
       project.style.display = 'block';
@@ -28,6 +33,5 @@ event.target.classList.add('category_selected');
 
   setTimeout(() => {
     projectContainer.classList.remove('anim_out');
-  }, 250);
-
-})
+}, 250);
+}
